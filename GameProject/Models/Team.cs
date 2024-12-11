@@ -7,7 +7,6 @@
         public string Description { get; set; }
 
         // Relationship with characters
-
         public List<Character> Characters { get; set; } = new();
     }
 

@@ -1,0 +1,41 @@
+﻿@model Team
+
+@{
+    ViewData["Title"] = "Team Details";
+}
+
+<h1>@Model.Name</h1>
+<p>@Model.Description</p>
+
+<h2>Characters</h2>
+@if (Model.Characters.Any())
+{
+    <ul>
+        @foreach (var character in Model.Characters)
+        {
+            <li>@character.Name (Health: @character.Health, Strength: @character.Strength)</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No characters added yet.</p>
+}
+
+<h2>Add a Character</h2>
+<form asp-action="AddCharacter" method="post">
+    <input type="hidden" name="teamId" value="@Model.Id" />
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input type="text" name="Name" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Health">Health</label>
+        <input type="number" name="Health" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="Strength">Strength</label>
+        <input type="number" name="Strength" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Add Character</button>
+</form>
