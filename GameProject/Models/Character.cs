@@ -16,6 +16,8 @@ namespace GameProject.Models
         [Range(1, 100, ErrorMessage = "Strength must be between 1 and 100.")]
         public int Strength { get; set; }
 
+        public int Wins { get; set; } // Track wins
+
         // Foreign key for Team
         public int TeamId { get; set; }
         public Team Team { get; set; }

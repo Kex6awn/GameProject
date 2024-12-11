@@ -38,17 +38,25 @@ namespace GameProject.Controllers
             int team1Strength = team1.Characters.Sum(c => c.Strength);
             int team2Strength = team2.Characters.Sum(c => c.Strength);
 
-            var winnerTeamId = team1Strength > team2Strength ? team1Id : team2Id;
+            var winningTeam = team1Strength > team2Strength ? team1 : team2;
+            var losingTeam = team1Strength > team2Strength ? team2 : team1;
 
             // Save the battle result
             var battle = new Battle
             {
-                Team1Id = team1Id,
-                Team2Id = team2Id,
-                WinnerTeamId = winnerTeamId
+                Team1Id = team1.Id,
+                Team2Id = team2.Id,
+                WinnerTeamId = winningTeam.Id
             };
 
             _context.Battles.Add(battle);
+
+            // Update wins for characters in the winning team
+            foreach (var character in winningTeam.Characters)
+            {
+                character.Wins++;
+            }
+
             _context.SaveChanges();
 
             return RedirectToAction(nameof(Result), new { id = battle.Id });
