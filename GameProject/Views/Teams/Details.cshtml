@@ -39,3 +39,6 @@ else
     </div>
     <button type="submit" class="btn btn-primary">Add Character</button>
 </form>
+
+<a asp-controller="Characters" asp-action="Customize" asp-route-id="@character.Id" class="btn btn-secondary">Edit</a>
+<a asp-controller="Characters" asp-action="Customize" asp-route-teamId="@Model.Id" class="btn btn-primary">Add New Character</a>

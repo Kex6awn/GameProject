@@ -1,0 +1,36 @@
+﻿@model Character
+
+@{
+    ViewData["Title"] = Model.Id == 0 ? "Create Character" : "Edit Character";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Customize" method="post">
+    @if (Model.Id != 0)
+    {
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="TeamId" />
+    }
+
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" required />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Health" class="control-label"></label>
+        <input asp-for="Health" type="number" class="form-control" required />
+        <span asp-validation-for="Health" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Strength" class="control-label"></label>
+        <input asp-for="Strength" type="number" class="form-control" required />
+        <span asp-validation-for="Strength" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
