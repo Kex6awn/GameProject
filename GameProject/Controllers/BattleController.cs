@@ -70,6 +70,19 @@ namespace GameProject.Controllers
 
             return View(battle);
         }
+
+        // GET: Battle/History
+        public IActionResult History()
+        {
+            var battles = _context.Battles
+                .Include(b => b.Team1)
+                .Include(b => b.Team2)
+                .Include(b => b.WinnerTeam)
+                .OrderByDescending(b => b.BattleDate)
+                .ToList();
+
+            return View(battles);
+        }
     }
 
 }

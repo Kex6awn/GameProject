@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Battle>
+
+@{
+    ViewData["Title"] = "Battle History";
+}
+
+<h1>Battle History</h1>
+
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Winner</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var battle in Model)
+            {
+                <tr>
+                    <td>@battle.BattleDate.ToShortDateString()</td>
+                    <td>@battle.Team1.Name</td>
+                    <td>@battle.Team2.Name</td>
+                    <td>@battle.WinnerTeam.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No battles have been fought yet.</p>
+}
